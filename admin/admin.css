@@ -1,0 +1,296 @@
+.energy-main {
+  padding-bottom: 95px;
+}
+.energy-main .intro p {
+  display: block;
+  max-width: 590px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+.energy-panel {
+  border: 1px solid #e0ebf2;
+  border-radius: 20px;
+  padding: 23px;
+  margin: 20px 0;
+  background: #fff;
+}
+.energy-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+.energy-heading h2,
+.references h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.7px;
+  margin: 5px 0 0;
+}
+.hint,
+.references p {
+  font-size: 12px;
+  line-height: 1.75;
+  color: #647d8f;
+}
+.sim-tag {
+  font-size: 9px;
+  letter-spacing: 0.7px;
+  font-weight: 800;
+  color: #347e8f;
+  background: #e9f8fa;
+  padding: 7px 9px;
+  border-radius: 30px;
+}
+.energy-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+.energy-fields label {
+  font-weight: 700;
+  font-size: 11px;
+  color: #547086;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.energy-fields input {
+  min-width: 0;
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  color: #15344e;
+  background: white;
+  border: 1px solid #d8e6ef;
+  border-radius: 10px;
+  padding: 11px 12px;
+}
+.energy-fields input:focus {
+  outline: 2px solid #08a7cc;
+  outline-offset: 1px;
+}
+.calc-button {
+  border: 0;
+  border-radius: 11px;
+  background: #078fb8;
+  color: #fff;
+  padding: 13px 19px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.calc-button:hover {
+  background: #067a9e;
+}
+.form-error {
+  color: #b84241;
+  font-size: 12px;
+}
+.energy-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.energy-stat {
+  border: 1px solid #e3edf3;
+  background: #f8fbfd;
+  padding: 17px;
+  border-radius: 17px;
+  min-width: 0;
+}
+.energy-stat span,
+.technical-grid span {
+  display: block;
+  color: #7690a3;
+  font-size: 11px;
+}
+.energy-stat strong {
+  display: block;
+  font-family: Manrope, sans-serif;
+  font-size: 22px;
+  color: #153d5b;
+  margin: 11px 0 4px;
+  overflow-wrap: anywhere;
+}
+.energy-stat small,
+.comparison-card small {
+  font-size: 10px;
+  color: #8ca1b0;
+}
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+.comparison-card {
+  padding: 19px;
+  background: #f8fbfd;
+  border-radius: 16px;
+  border: 1px solid #e4edf3;
+}
+.comparison-icon {
+  font-size: 21px;
+}
+.comparison-card h3 {
+  margin: 12px 0 5px;
+  font-size: 15px;
+}
+.comparison-card p {
+  color: #71899a;
+  font-size: 11px;
+  line-height: 1.6;
+  min-height: 56px;
+}
+.comparison-card strong {
+  display: block;
+  font-family: Manrope, sans-serif;
+  font-size: 21px;
+  margin: 12px 0 3px;
+  overflow-wrap: anywhere;
+}
+.comparison-card small {
+  display: block;
+}
+.technical-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.technical-grid > div {
+  padding: 12px 14px;
+  border: 1px solid #e7eef3;
+  border-radius: 12px;
+}
+.technical-grid strong {
+  font-size: 13px;
+  display: block;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+.assistant-panel {
+  background: linear-gradient(130deg, #f2fbfc, #fff);
+}
+.assistant-symbol {
+  font-size: 25px;
+  color: #079cca;
+}
+.assistant-panel > p {
+  line-height: 1.85;
+  font-size: 13px;
+  color: #375a73;
+}
+.quick-questions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.quick-questions > span {
+  font-size: 11px;
+  font-weight: 700;
+  color: #688297;
+  width: 100%;
+}
+.quick-questions button {
+  border: 1px solid #bcdce8;
+  border-radius: 99px;
+  padding: 8px 11px;
+  background: #fff;
+  color: #236c88;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+}
+.quick-questions button:hover {
+  background: #e2f6fa;
+}
+.assistant-answer {
+  margin-top: 15px;
+  background: #fff;
+  border: 1px solid #e0ecf2;
+  padding: 16px;
+  border-radius: 12px;
+  line-height: 1.7;
+  font-size: 12px;
+  color: #375a73;
+}
+.references h2 {
+  margin-bottom: 15px;
+}
+.references a {
+  color: #087db0;
+  text-decoration: underline;
+}
+.prototype-warning {
+  padding: 13px;
+  background: #fff7e8;
+  border-radius: 10px;
+  color: #885e19 !important;
+}
+.bottom-nav .nav-link {
+  min-width: 0;
+  flex: 1;
+  font-size: 11px;
+}
+@media (max-width: 580px) {
+  .energy-panel {
+    padding: 17px;
+  }
+  .energy-fields,
+  .comparison-grid,
+  .technical-grid {
+    grid-template-columns: 1fr;
+  }
+  .energy-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .energy-stat:last-child {
+    grid-column: span 2;
+  }
+  .comparison-card p {
+    min-height: 0;
+  }
+  .energy-main {
+    padding-bottom: 40px;
+  }
+}
+.energy-main .intro h1 {
+  margin-top: 10px;
+}
+.energy-panel {
+  box-shadow: 0 5px 20px #163a5408;
+}
+.energy-stat {
+  background: #f5fafc;
+}
+.comparison-card {
+  background: #fff;
+}
+.comparison-card:first-child {
+  border-top: 3px solid #0a9cc7;
+}
+.comparison-card:nth-child(2) {
+  border-top: 3px solid #2bb985;
+}
+.assistant-panel {
+  border-color: #d9ebef;
+  background: linear-gradient(130deg, #eff9fc, #ffffff 80%);
+}
+.assistant-answer {
+  border-left: 3px solid #08a7cc;
+}
+.references {
+  background: #fafcfd;
+}
+.prototype-warning {
+  background: #eef6f9;
+  color: #516e7d !important;
+}
+@media (min-width: 750px) {
+  .energy-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

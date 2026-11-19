@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Consumo, autonomia e alternativas de energia para a Estação 01"
+    />
+    <title>AlagaSave | Energia da estação</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <script defer src="admin.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a href="index.html" class="brand" aria-label="AlagaSave, início">
+          <span class="brand-icon"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M2 10c3 0 3-3 6-3s3 3 6 3 3-3 6-3M2 17c3 0 3-3 6-3s3 3 6 3 3-3 6-3"
+              /></svg
+          ></span>
+          <span
+            ><b>Alaga<span>Save</span></b
+            ><small>MONITORAMENTO INTELIGENTE DE ALAGAMENTOS</small></span
+          >
+        </a>
+        <div class="header-actions">
+          <span class="header-pill">Estação 01</span>
+        </div>
+      </header>
+      <main class="content energy-main">
+        <section class="intro">
+          <span class="kicker">ALAGASAVE / GESTÃO</span>
+          <h1>Energia da estação<span class="title-dot">.</span></h1>
+          <p>
+            Acompanhe o consumo e compare opções para manter o monitoramento
+            funcionando com eficiência.
+          </p>
+        </section>
+
+        <section class="energy-panel" aria-labelledby="inputs-title">
+          <div class="energy-heading">
+            <div>
+              <span class="kicker">CONFIGURAÇÕES</span>
+              <h2 id="inputs-title">Dados para o cálculo</h2>
+            </div>
+            <span class="sim-tag">ESTIMATIVA</span>
+          </div>
+          <p class="hint">
+            Ajuste os valores da Estação 01 para simular cenários. Considere o
+            consumo de sensores, conectividade e alimentação ao informar a
+            potência média.
+          </p>
+          <div class="energy-fields">
+            <label
+              >Potência média total (W)
+              <input
+                type="number"
+                id="potencia"
+                min="0.01"
+                max="10000"
+                step="0.1"
+                value="2"
+                required
+            /></label>
+            <label
+              >Horas ligadas por dia
+              <input
+                type="number"
+                id="horas"
+                min="0.1"
+                max="24"
+                step="0.1"
+                value="24"
+                required
+            /></label>
+            <label
+              >Tarifa da rede (R$/kWh)
+              <input
+                type="number"
+                id="tarifa"
+                min="0"
+                max="100"
+                step="0.01"
+                value="0.90"
+                required
+            /></label>
+            <label
+              >Potência do painel solar (Wp)
+              <input
+                type="number"
+                id="painel"
+                min="0"
+                max="100000"
+                step="1"
+                value="20"
+                required
+            /></label>
+            <label
+              >Horas de sol pleno/dia (h)
+              <input
+                type="number"
+                id="sol"
+                min="0"
+                max="24"
+                step="0.1"
+                value="3"
+                required
+            /></label>
+            <label
+              >Eficiência global do sistema (%)
+              <input
+                type="number"
+                id="eficiencia"
+                min="1"
+                max="100"
+                step="1"
+                value="70"
+                required
+            /></label>
+            <label
+              >Capacidade nominal da bateria (Wh)
+              <input
+                type="number"
+                id="bateria"
+                min="0"
+                max="1000000"
+                step="1"
+                value="100"
+                required
+            /></label>
+            <label
+              >Parcela utilizável da bateria (%)
+              <input
+                type="number"
+                id="utilizavel"
+                min="1"
+                max="100"
+                step="1"
+                value="80"
+                required
+            /></label>
+            <label
+              >Investimento inicial solar + bateria (R$)
+              <input
+                type="number"
+                id="investimento"
+                min="0"
+                max="100000000"
+                step="1"
+                value="900"
+                required
+            /></label>
+            <label
+              >Manutenção anual da solução solar (R$)
+              <input
+                type="number"
+                id="manutencao"
+                min="0"
+                max="100000000"
+                step="1"
+                value="30"
+                required
+            /></label>
+          </div>
+          <p id="erro" class="form-error" role="alert" hidden></p>
+          <button class="calc-button" id="calcular" type="button">
+            Atualizar análise
+          </button>
+        </section>
+
+        <section aria-label="Resultados estimados" class="energy-results">
+          <div class="energy-heading">
+            <div>
+              <span class="kicker">ANÁLISE</span>
+              <h2>Resumo de consumo</h2>
+            </div>
+          </div>
+          <div class="energy-stats">
+            <article class="energy-stat">
+              <span>Consumo diário</span><strong id="diario">—</strong
+              ><small>Wh por dia</small>
+            </article>
+            <article class="energy-stat">
+              <span>Consumo mensal</span><strong id="mensal">—</strong
+              ><small>kWh em 30 dias</small>
+            </article>
+            <article class="energy-stat">
+              <span>Rede elétrica</span><strong id="custo">—</strong
+              ><small>Custo em 30 dias</small>
+            </article>
+          </div>
+        </section>
+
+        <section class="energy-panel" aria-labelledby="comparison-title">
+          <div class="energy-heading">
+            <div>
+              <span class="kicker">OPÇÕES DE ALIMENTAÇÃO</span>
+              <h2 id="comparison-title">Qual a melhor opção para a estação?</h2>
+            </div>
+          </div>
+          <div class="comparison-grid">
+            <div class="comparison-card">
+              <span class="comparison-icon">⚡</span>
+              <h3>Rede elétrica</h3>
+              <p>
+                Prática onde já existe infraestrutura. Depende do fornecimento
+                da distribuidora.
+              </p>
+              <strong id="rede-anual">—</strong
+              ><small>Custo anual estimado de energia</small>
+            </div>
+            <div class="comparison-card">
+              <span class="comparison-icon">☀️</span>
+              <h3>Solar + bateria</h3>
+              <p>
+                Geração renovável com armazenamento. Requer investimento e
+                planejamento para dias chuvosos.
+              </p>
+              <strong id="solar-anual">—</strong
+              ><small
+                >Manutenção anual informada, sem investimento inicial</small
+              >
+            </div>
+          </div>
+          <div class="technical-grid">
+            <div>
+              <span>Geração solar diária estimada</span
+              ><strong id="geracao">—</strong>
+            </div>
+            <div>
+              <span>Autonomia da bateria sem recarga</span
+              ><strong id="autonomia">—</strong>
+            </div>
+            <div>
+              <span>Cobertura solar estimada</span
+              ><strong id="suficiencia">—</strong>
+            </div>
+            <div>
+              <span>Retorno simples estimado</span
+              ><strong id="retorno">—</strong>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="energy-panel assistant-panel"
+          aria-labelledby="assistant-title"
+        >
+          <div class="energy-heading">
+            <div>
+              <span class="kicker">ORIENTAÇÕES INTELIGENTES</span>
+              <h2 id="assistant-title">
+                O que faz mais sentido para sua estação?
+              </h2>
+            </div>
+            <span class="assistant-symbol">✦</span>
+          </div>
+          <p id="recomendacao" aria-live="polite">
+            Preencha os parâmetros e calcule para receber orientações.
+          </p>
+          <div class="quick-questions">
+            <span>Pergunte ao assistente:</span>
+            <button type="button" data-question="economia">
+              Como reduzir o consumo?
+            </button>
+            <button type="button" data-question="solar">
+              Quando a energia solar compensa?
+            </button>
+            <button type="button" data-question="ambiente">
+              E o impacto ambiental?
+            </button>
+            <button type="button" data-question="risco">
+              E em caso de alagamento?
+            </button>
+          </div>
+          <div
+            class="assistant-answer"
+            id="resposta-pergunta"
+            aria-live="polite"
+          >
+            Selecione uma pergunta para ver uma explicação.
+          </div>
+        </section>
+
+        <section
+          class="energy-panel references"
+          aria-labelledby="references-title"
+        >
+          <h2 id="references-title">Como chegamos a estes valores</h2>
+          <p>
+            <strong>Fórmulas:</strong> energia diária (Wh) = potência média (W)
+            × horas/dia; energia mensal (kWh) = energia diária × 30 / 1000;
+            custo mensal da rede = kWh mensal × tarifa. Geração solar diária
+            estimada (Wh) = Wp × horas de sol pleno × eficiência. Autonomia sem
+            recarga (h) = capacidade nominal da bateria × fração utilizável /
+            potência média. Retorno simples = investimento / (custo anual da
+            rede − manutenção anual), se positivo.
+          </p>
+          <p>
+            <strong>Limitações:</strong> não há sensor de consumo elétrico no
+            protótipo; todas as potências e custos são entradas hipotéticas até
+            serem fundamentadas. O cálculo não considera sazonalidade climática,
+            degradação, reposição de bateria, impostos, juros, instalação, custo
+            de energia de backup nem perdas adicionais além das incluídas na
+            eficiência fornecida. A autonomia considera carga constante e
+            bateria inicialmente cheia; a geração média diária não garante
+            funcionamento contínuo durante dias chuvosos.
+          </p>
+          <p>
+            <strong>Impacto ambiental:</strong> a energia solar é renovável, mas
+            painéis e baterias possuem impactos de fabricação e descarte. Não é
+            possível afirmar uma redução específica de CO₂ sem fatores de
+            emissão e análise de ciclo de vida fundamentados.
+          </p>
+          <p>
+            <strong>Fontes para embasar os dados:</strong>
+            <a
+              href="https://documentation.espressif.com/esp32_datasheet_en.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Espressif — documentação técnica do ESP32</a
+            >
+            ·
+            <a
+              href="https://www.gov.br/aneel/pt-br"
+              target="_blank"
+              rel="noopener noreferrer"
+              >ANEEL — tarifas de energia</a
+            >
+            ·
+            <a
+              href="https://cresesb.cepel.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >CRESESB — recursos solares</a
+            >. Use essas fontes para validar os parâmetros da sua instalação; os
+            valores iniciais da página são apenas exemplos.
+          </p
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
